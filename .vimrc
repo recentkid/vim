@@ -22,8 +22,13 @@ autocmd! bufwritepost .vimrc source %
 syntax on
 set background=dark
 "colorscheme murphy
-colorscheme seoul256
+"colorscheme seoul256
+"colorscheme molokai
+colorscheme mango
+"colorscheme seoul256
 "colorscheme mango
+"colorscheme mango
+
 let g:seoul256_background=233
 set visualbell
 
@@ -124,12 +129,13 @@ set lazyredraw      " vim-airline auto initialization
 set tabstop=4       " number of spaces that a tab counts for
 set shiftwidth=4    " number of spaces to use for each step of indent
 set softtabstop=4   " number of spaces that a tab counts for while editing
-"set shiftround         " round the indent to a multiple of shiftwidth
+set shiftround      " round the indent to a multiple of shiftwidth
 set expandtab       " expand tabs to spaces
 set foldmethod=indent " fold on indentation
 set foldnestmax=0   " method of classes are folded, not any deeper.
 set list            " show hidden characters
 set listchars=tab:▸\ ,eol:¬ 
+set hidden          " hides the buffers instead of closing them.
 
 set pastetoggle=<F2>    " mass paste mode
 
@@ -150,12 +156,10 @@ inoremap jk <ESC>   " fast escape from Insert Mode
 "inoremap <left> <nop>
 "inoremap <right> <nop>
 "
-"
 " Some attempt to map c-backspace to c-w, but failed.
 "imap <C-CR> <C-W>
 ":inoremap <C-BS> <C-W>
 "inoremap ^? ^H
-
 
 
 " Quicksave command
@@ -163,6 +167,8 @@ noremap <C-S> :w<CR>
 vnoremap <C-S> <C-C>:w<CR>
 inoremap <C-S> <C-O>:w<CR>
 
+" Save on losing focus
+au FocusLost * :wa
 map <C-Q> :quit<CR>
 
 " This might need to be remapped
@@ -199,6 +205,9 @@ nnoremap <Leader>s <C-W>v<C-W>l
 nnoremap <Leader>h <C-W>s<C-W>l
 
 " folding shortcuts
+
+" reselect the text that was just pasted.
+nnoremap <leader>v V`]
 
 " easier moving of code blocks
 vnoremap < <gv      " better indentation
